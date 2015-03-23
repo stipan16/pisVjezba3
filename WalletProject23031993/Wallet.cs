@@ -16,6 +16,8 @@ namespace WalletProject23031993
         //metoda za dodavanje valuta
         public void AddCurrencyValue(string currency, float value)
         {
+            CheckCurrencyFormat(currency);
+
             if (this.dictionary.ContainsKey(currency))
             {
                 this.dictionary[currency] += value;
@@ -24,6 +26,23 @@ namespace WalletProject23031993
             {
                 this.dictionary.Add(currency, value);
             }
+        }
+
+        private void CheckCurrencyFormat(string currency)
+        {
+            if (currency == null) 
+            { 
+                throw new InvalidProgramException("Currency can not br null");
+            }
+
+            if (currency.Length != 3)
+                throw new InvalidProgramException("Currency must be of length 3");
+
+            if (currency.ToUpper() != currency)
+            {
+                throw new InvalidProgramException("Currency must be upper case");
+            }
+            
         }
 
         public float GetCurrencyValue(string currency)

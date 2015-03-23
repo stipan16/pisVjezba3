@@ -57,10 +57,14 @@ namespace WalletProject23031993Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidProgramException))]  //da metoda očekiva exeption i da se dobro ponaša samo ako dođe do tog exeptiona
         public void TestAddCurrencyCrashesIfFormatLengthInvalid()
         {
+            var wallet = new Wallet();
 
+            wallet.AddCurrencyValue("hrk", 100);
         }
 
-        }
+       
+    }
 }
